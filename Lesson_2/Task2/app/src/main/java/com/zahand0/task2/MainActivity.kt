@@ -1,9 +1,8 @@
 package com.zahand0.task2
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.fragment.app.add
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 
 class MainActivity : AppCompatActivity() {
