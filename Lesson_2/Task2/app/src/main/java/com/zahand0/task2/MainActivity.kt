@@ -7,9 +7,9 @@ import androidx.fragment.app.commit
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var button1: Button
-    lateinit var button2: Button
-    lateinit var button3: Button
+    private lateinit var button1: Button
+    private lateinit var button2: Button
+    private lateinit var button3: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
