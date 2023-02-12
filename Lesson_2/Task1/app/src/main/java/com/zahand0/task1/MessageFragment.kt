@@ -28,7 +28,8 @@ class MessageFragment : Fragment(R.layout.fragment_message) {
         super.onViewCreated(view, savedInstanceState)
         button = view.findViewById(R.id.button)
         textView = view.findViewById(R.id.textView)
-        textView.text = arguments?.getString(ARG_MESSAGE_TEXT) ?: getString(R.string.default_message)
+        textView.text =
+            arguments?.getString(ARG_MESSAGE_TEXT) ?: getString(R.string.default_message)
         button.setOnClickListener {
             parentFragmentManager.commit {
                 replace(

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
-                add<MessageFragment>(R.id.fragment_container_view,)
+                add<MessageFragment>(R.id.fragment_container_view)
             }
         }
     }

@@ -34,7 +34,7 @@ class EditFragment : Fragment(R.layout.fragment_edit) {
         editText.setText(arguments?.getString(ARG_EDIT_TEXT, "") ?: "")
         button.setOnClickListener {
             setFragmentResult(
-                requestKey =  RESULT_REQUEST_KEY,
+                requestKey = RESULT_REQUEST_KEY,
                 result = bundleOf(RESULT_BUNDLE_KEY to editText.text.toString())
             )
             parentFragmentManager.popBackStack()
