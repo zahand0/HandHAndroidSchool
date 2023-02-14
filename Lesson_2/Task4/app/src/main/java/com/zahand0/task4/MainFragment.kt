@@ -25,10 +25,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             .joinToString(separator = "\n")
     }
 
-    private fun addStage(name: String) {
+    private fun addStage(name: String, addToView: Boolean = true) {
         Log.d(TAG, name)
         lifecycleStages.add(name)
-        if (::textView.isInitialized) {
+        if (addToView && ::textView.isInitialized) {
             textView.text = lastLifecycleStages()
         }
     }
@@ -40,12 +40,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     override fun onAttach(context: Context) {
-        addStage("onAttach")
+        addStage("onAttach", false)
         super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        addStage("onCreate")
+        addStage("onCreate", false)
         super.onCreate(savedInstanceState)
     }
 
@@ -54,7 +54,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        addStage("onCreateView")
+        addStage("onCreateView", false)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -85,27 +85,27 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        addStage("onSaveInstanceState")
+        addStage("onSaveInstanceState", false)
         super.onSaveInstanceState(outState)
     }
 
     override fun onStop() {
-        addStage("onStop")
+        addStage("onStop", false)
         super.onStop()
     }
 
     override fun onDestroyView() {
-        addStage("onDestroyView")
+        addStage("onDestroyView", false)
         super.onDestroyView()
     }
 
     override fun onDestroy() {
-        addStage("onDestroy")
+        addStage("onDestroy", false)
         super.onDestroy()
     }
 
     override fun onDetach() {
-        addStage("onDetach")
+        addStage("onDetach", false)
         super.onDetach()
     }
 }

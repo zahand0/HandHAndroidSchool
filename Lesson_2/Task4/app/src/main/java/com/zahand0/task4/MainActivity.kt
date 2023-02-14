@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
             .joinToString(separator = "\n")
     }
 
-    private fun addStage(name: String) {
+    private fun addStage(name: String, addToView: Boolean = true) {
         Log.d(TAG, name)
         lifecycleStages.add(name)
-        if (::textView.isInitialized) {
+        if (addToView && ::textView.isInitialized) {
             textView.text = lastLifecycleStages()
         }
     }
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onAttachFragment(fragment: Fragment?) {
-        addStage("onAttachFragment")
+        addStage("onAttachFragment", false)
         super.onAttachFragment(fragment)
     }
 
@@ -83,22 +83,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        addStage("onSaveInstanceState")
+        addStage("onSaveInstanceState", false)
         super.onSaveInstanceState(outState)
     }
 
     override fun onStop() {
-        addStage("onStop")
+        addStage("onStop", false)
         super.onStop()
     }
 
     override fun onDestroy() {
-        addStage("onDestroy")
+        addStage("onDestroy", false)
         super.onDestroy()
     }
 
     override fun onDetachedFromWindow() {
-        addStage("onDetachedFromWindow")
+        addStage("onDetachedFromWindow", false)
         super.onDetachedFromWindow()
     }
 }
