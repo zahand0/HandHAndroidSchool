@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Book Store</string>
     <string name="library_action_retry">Повторить</string>
+    <string name="library_request_error">Произошла ошибка в запросе %s</string>
+    <string name="library_store_book_in_stock">в наличии</string>
+    <string name="library_store_book_not_in_stock">нет в наличии</string>
+    <string name="library_store_book_description">%s (%s)</string>
 </resources>
