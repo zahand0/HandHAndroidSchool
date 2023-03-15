@@ -23,6 +23,10 @@ class LibraryViewModel : ViewModel() {
         MutableStateFlow(Resource.Loading())
     val bookList: StateFlow<Resource<BookListUiState>> = _bookList
 
+    init {
+        refreshBooks()
+    }
+
     fun refreshBooks() {
         viewModelScope.launch(Dispatchers.IO) {
             _bookList.value = Resource.Loading(_bookList.value.data)

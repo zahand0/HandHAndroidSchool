@@ -35,8 +35,6 @@ class LibraryFragment : Fragment() {
 
         setupBookList()
         setupButton()
-
-        viewModel.refreshBooks()
     }
 
     private fun setupButton() {
