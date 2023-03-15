@@ -12,8 +12,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.commit {
-            add<LibraryFragment>(R.id.container)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                add<LibraryFragment>(R.id.container)
+            }
         }
     }
 }
