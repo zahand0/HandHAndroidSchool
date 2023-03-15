@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Book Store</string>
+    <string name="library_action_retry">Повторить</string>
 </resources>
