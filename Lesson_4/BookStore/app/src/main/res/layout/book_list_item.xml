@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/normal_100"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_author_name"
+        style="@style/TextAppearance.BodyLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Naoki Urasawa" />
+
+    <TextView
+        android:id="@+id/text_books"
+        style="@style/TextAppearance.BodyMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Monster" />
+</LinearLayout>
