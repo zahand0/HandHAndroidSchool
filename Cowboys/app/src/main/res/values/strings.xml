@@ -6,4 +6,13 @@
     <string name="sign_in_login_hint">Логин</string>
     <string name="sign_in_password_hint">Пароль</string>
     <string name="sign_in_action">@string/sign_in</string>
+    <string name="progress_container_refresh_action">Обновить</string>
+    <string name="progress_container_unexpected_error_title">Произошла непредвиденная ошибка</string>
+    <string name="progress_container_unexpected_error_description">Детальный текст ошибки, занимающий несколько строк</string>
+    <string name="progress_container_empty_list_title">Товары не были обнаружены</string>
+    <string name="progress_container_empty_list_description">Попробуйте обновить, вдруг товары появились</string>
+    <string name="product_item_image_description">Товар</string>
+    <string name="product_item_buy_action">Купить</string>
+    <string name="catalog_title">Каталог</string>
+    <string name="top_bar_menu_profile_title">Профиль</string>
 </resources>

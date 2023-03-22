@@ -6,7 +6,7 @@ import androidx.core.view.WindowCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.zahand0.cowboys.R
-import com.zahand0.cowboys.presentation.ui.screen.signin.SignInFragment
+import com.zahand0.cowboys.presentation.ui.screen.catalog.CatalogFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         fitContentViewToInsets()
 
         supportFragmentManager.commit {
-            add<SignInFragment>(R.id.container)
+            add<CatalogFragment>(R.id.container)
         }
     }
 

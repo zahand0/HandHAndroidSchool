@@ -3,9 +3,41 @@
 
     <style name="TextAppearance" parent="android:TextAppearance" />
 
-    <style name="TextAppearance.HeadlineLarge">
+    <style name="TextAppearance.Headline">
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="TextAppearance.Body">
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="TextAppearance.Label">
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="TextAppearance.Headline.Large">
         <item name="android:textSize">@dimen/text_headline_large_size</item>
         <item name="android:lineSpacingExtra">@dimen/text_h1_line</item>
+    </style>
+
+    <style name="TextAppearance.Headline.Small">
+        <item name="android:textSize">@dimen/text_headline_small_size</item>
+    </style>
+
+    <style name="TextAppearance.Body.Medium">
+        <item name="android:textSize">@dimen/text_body_medium_size</item>
+    </style>
+
+    <style name="TextAppearance.Body.Small">
+        <item name="android:textSize">@dimen/text_body_small_size</item>
+    </style>
+
+    <style name="TextAppearance.Label.Medium">
+        <item name="android:textSize">@dimen/text_label_medium_size</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle" parent="TextAppearance.Label.Medium">
+        <item name="android:textColor">@color/text_secondary</item>
     </style>
 
     <style name="Theme.Cowboys.TexInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
@@ -43,9 +75,25 @@
         <item name="android:textSize">@dimen/text_label_medium_size</item>
     </style>
 
-    <style name="TextAppearance.Button">
+    <style name="TextAppearance.Button" parent="TextAppearance.Body">
         <item name="android:textSize">@dimen/text_body_large_size</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="TextAppearance.TextButton" parent="TextAppearance.Body.Small">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+
+    </style>
+
+    <style name="TextAppearance.Button.Small">
+        <item name="android:textSize">@dimen/text_body_small_size</item>
+    </style>
+
+    <style name="TextAppearance.Toolbar" parent="TextAppearance.Headline.Small">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="Theme.Cowboys.Button" parent="Widget.Material3.Button.UnelevatedButton">
@@ -55,5 +103,28 @@
         <item name="android:textAppearance">
             @style/TextAppearance.Button
         </item>
+    </style>
+
+    <style name="Theme.Cowboys.TextButton">
+        <item name="android:textAppearance">@style/TextAppearance.TextButton</item>
+        <item name="android:drawablePadding">@dimen/normal_25</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Theme.Cowboys.Button.Small">
+        <item name="android:textAppearance">
+            @style/TextAppearance.Button.Small
+        </item>
+    </style>
+
+    <style name="Widget.App.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+        <item name="titleTextAppearance">@style/TextAppearance.Toolbar</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar" parent="">
+        <item name="colorSurface">?attr/colorPrimary</item>
     </style>
 </resources>

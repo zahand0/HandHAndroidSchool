@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:parentTag="com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressButton">
 
     <Button
         android:id="@+id/button"
@@ -19,4 +21,4 @@
         android:indeterminateTint="@color/white"
         android:indeterminateTintMode="src_in"
         android:visibility="gone" />
-</FrameLayout>
+</merge>

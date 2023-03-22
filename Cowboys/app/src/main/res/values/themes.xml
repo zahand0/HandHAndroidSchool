@@ -7,8 +7,11 @@
     <style name="Theme.Cowboys" parent="Base.V27.Theme">
         <item name="android:statusBarColor">@color/black_20pc</item>
         <item name="colorPrimary">@color/smalt</item>
+        <item name="colorSecondary">@color/dark_smalt</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
         <item name="textInputStyle">@style/Theme.Cowboys.TexInputLayout</item>
         <item name="materialButtonStyle">@style/Theme.Cowboys.Button</item>
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
     </style>
 </resources>
