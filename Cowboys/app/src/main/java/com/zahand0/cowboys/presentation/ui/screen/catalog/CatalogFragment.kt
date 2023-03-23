@@ -17,7 +17,8 @@ import kotlinx.coroutines.launch
 
 class CatalogFragment : Fragment() {
 
-    private lateinit var binding: FragmentCatalogBinding
+    private var _binding: FragmentCatalogBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: CatalogViewModel by viewModels()
     private val productsAdapter = ProductsAdapter(onBuyClick = {
@@ -29,7 +30,7 @@ class CatalogFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCatalogBinding.inflate(inflater, container, false)
+        _binding = FragmentCatalogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,6 +40,11 @@ class CatalogFragment : Fragment() {
         setupProducts()
         setupProgressContainerProducts()
         refreshProducts()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setupProgressContainerProducts() {
