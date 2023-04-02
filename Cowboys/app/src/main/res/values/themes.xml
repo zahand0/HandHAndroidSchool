@@ -13,5 +13,7 @@
         <item name="textInputStyle">@style/Theme.Cowboys.TexInputLayout</item>
         <item name="materialButtonStyle">@style/Theme.Cowboys.Button</item>
         <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
+        <item name="snackbarStyle">@style/Widget.App.Snackbar.Error</item>
+        <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
     </style>
 </resources>

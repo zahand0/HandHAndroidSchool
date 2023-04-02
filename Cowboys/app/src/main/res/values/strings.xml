@@ -1,11 +1,21 @@
 <resources>
     <string name="app_name">Cowboys</string>
     <string name="sign_in">Войти</string>
+    <string name="sign_out">Выйти</string>
+    <string name="my_orders">Мои заказы</string>
+    <string name="settings">Настройки</string>
+    <string name="text_field_error">Поле заполнено неверно</string>
+    <string name="unexpected_error_title">Произошла непредвиденная ошибка.</string>
+    <string name="unexpected_error_description">Пожалуйста, попробуйте позже.</string>
 
     <string name="sign_in_title">@string/sign_in</string>
     <string name="sign_in_login_hint">Логин</string>
     <string name="sign_in_password_hint">Пароль</string>
     <string name="sign_in_action">@string/sign_in</string>
+    <string name="sign_in_login_error">@string/text_field_error</string>
+    <string name="sign_in_password_error">@string/text_field_error</string>
+    <string name="sign_in_wrong_credentials">Неверный логин или пароль.</string>
+    <string name="sign_in_unexpected_error">Произошла непредвиденная ошибка.\nПожалуйста, попробуйте позже.</string>
     <string name="progress_container_refresh_action">Обновить</string>
     <string name="progress_container_unexpected_error_title">Произошла непредвиденная ошибка</string>
     <string name="progress_container_unexpected_error_description">Детальный текст ошибки, занимающий несколько строк</string>
@@ -15,4 +25,10 @@
     <string name="product_item_buy_action">Купить</string>
     <string name="catalog_title">Каталог</string>
     <string name="top_bar_menu_profile_title">Профиль</string>
+    <string name="profile_image_desc">Аватар профиля</string>
+    <string name="profile_orders_action">@string/my_orders</string>
+    <string name="profile_sign_out_action">@string/sign_out</string>
+    <string name="profile_settings_action">@string/settings</string>
+    <string name="profile_user_name">%1$s %2$s</string>
+    <string name="profile_app_version">Приложение %1$s</string>
 </resources>
