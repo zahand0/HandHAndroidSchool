@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,9 +14,12 @@ import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.FragmentCatalogBinding
 import com.zahand0.cowboys.presentation.ui.screen.catalog.products.ProductItemDecoration
 import com.zahand0.cowboys.presentation.ui.screen.catalog.products.ProductsAdapter
+import com.zahand0.cowboys.presentation.ui.screen.profile.ProfileFragment
 import com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CatalogFragment : Fragment() {
 
     private var _binding: FragmentCatalogBinding? = null
@@ -36,10 +41,30 @@ class CatalogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupTopBar()
         setupProducts()
         setupProgressContainerProducts()
         refreshProducts()
+    }
+
+    private fun setupTopBar() {
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.profile -> {
+                    navigateToProfile()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    private fun navigateToProfile() {
+        parentFragmentManager.commit {
+            replace<ProfileFragment>(R.id.container)
+            addToBackStack(null)
+        }
     }
 
     override fun onDestroyView() {
