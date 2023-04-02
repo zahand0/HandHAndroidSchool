@@ -6,17 +6,20 @@ import androidx.core.view.WindowCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.zahand0.cowboys.R
-import com.zahand0.cowboys.presentation.ui.screen.catalog.CatalogFragment
+import com.zahand0.cowboys.presentation.ui.screen.signin.SignInFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         fitContentViewToInsets()
-
-        supportFragmentManager.commit {
-            add<CatalogFragment>(R.id.container)
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                add<SignInFragment>(R.id.container)
+            }
         }
     }
 
