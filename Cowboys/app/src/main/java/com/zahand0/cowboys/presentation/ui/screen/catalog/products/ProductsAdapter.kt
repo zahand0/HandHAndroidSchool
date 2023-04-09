@@ -10,11 +10,11 @@ import coil.transform.RoundedCornersTransformation
 import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.ProductItemBinding
 import com.zahand0.cowboys.domain.model.Product
-import java.text.NumberFormat
-import java.util.Currency
+import com.zahand0.cowboys.presentation.ui.util.CurrencyUtil
 
 class ProductsAdapter(
-    private val onBuyClick: (productId: String) -> Unit
+    private val onBuyClick: (productId: String) -> Unit,
+    private val onClick: (productId: String) -> Unit
 ) : ListAdapter<Product, ProductsAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -25,8 +25,9 @@ class ProductsAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.setOnClickListener { onBuyClick(getItem(position).id) }
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        holder.itemView.setOnClickListener { onClick(item.id) }
+        holder.bind(getItem(position), onBuyClick = { onBuyClick(item.id) })
     }
 
     override fun getItemCount(): Int = currentList.size
@@ -34,20 +35,18 @@ class ProductsAdapter(
     class ViewHolder(private val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product: Product) {
-            val currencyFormat: NumberFormat = NumberFormat.getCurrencyInstance().apply {
-                maximumFractionDigits = 0
-                currency = Currency.getInstance("RUB")
-            }
+        fun bind(product: Product, onBuyClick: () -> Unit) {
+
             with(binding) {
-                textProductPrice.text = currencyFormat.format(product.price)
+                textProductPrice.text = CurrencyUtil.currencyFormat.format(product.price)
                 textProductTitle.text = product.title
                 textProductCategory.text = product.category
-                imageProduct.load(product.previewUrl) {
+                imageProduct.load(product.preview) {
                     val corners =
                         binding.root.context.resources.getDimension(R.dimen.product_item_image_corner_size)
                     transformations(RoundedCornersTransformation(corners))
                 }
+                textButtonBuy.setOnClickListener { onBuyClick() }
             }
         }
     }

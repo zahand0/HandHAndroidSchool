@@ -31,4 +31,6 @@
     <string name="profile_settings_action">@string/settings</string>
     <string name="profile_user_name">%1$s %2$s</string>
     <string name="profile_app_version">Приложение %1$s</string>
+    <string name="product_size_hint">Размер</string>
+    <string name="product_buy_action">Купить сейчас</string>
 </resources>

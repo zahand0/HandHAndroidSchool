@@ -14,6 +14,7 @@ import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.FragmentCatalogBinding
 import com.zahand0.cowboys.presentation.ui.screen.catalog.products.ProductItemDecoration
 import com.zahand0.cowboys.presentation.ui.screen.catalog.products.ProductsAdapter
+import com.zahand0.cowboys.presentation.ui.screen.product.ProductFragment
 import com.zahand0.cowboys.presentation.ui.screen.profile.ProfileFragment
 import com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,9 +27,10 @@ class CatalogFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: CatalogViewModel by viewModels()
-    private val productsAdapter = ProductsAdapter(onBuyClick = {
-
-    })
+    private val productsAdapter = ProductsAdapter(
+        onBuyClick = {},
+        onClick = ::onProductClick
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -91,6 +93,13 @@ class CatalogFragment : Fragment() {
             ProductItemDecoration(requireContext(), R.drawable.products_divider, decorationOffset)
 
         binding.recyclerProducts.addItemDecoration(dividerDecoration)
+    }
+
+    private fun onProductClick(productId: String) {
+        parentFragmentManager.commit {
+            add(R.id.container, ProductFragment.newInstance(productId))
+            addToBackStack(null)
+        }
     }
 
     private fun refreshProducts() {

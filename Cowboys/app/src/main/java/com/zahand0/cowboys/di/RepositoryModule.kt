@@ -6,6 +6,8 @@ import com.zahand0.cowboys.domain.use_cases.get_all_products.GetAllProductsUseCa
 import com.zahand0.cowboys.domain.use_cases.get_all_products.GetAllProductsUseCaseImpl
 import com.zahand0.cowboys.domain.use_cases.get_app_version.GetAppVersionUseCase
 import com.zahand0.cowboys.domain.use_cases.get_app_version.GetAppVersionUseCaseImpl
+import com.zahand0.cowboys.domain.use_cases.get_product_details.GetProductDetailsUseCase
+import com.zahand0.cowboys.domain.use_cases.get_product_details.GetProductDetailsUseCaseImpl
 import com.zahand0.cowboys.domain.use_cases.get_user.GetUserUseCase
 import com.zahand0.cowboys.domain.use_cases.get_user.GetUserUseCaseImpl
 import com.zahand0.cowboys.domain.use_cases.sign_in.SignInUseCase
@@ -29,6 +31,10 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindGetAllProductsUseCase(useCase: GetAllProductsUseCaseImpl): GetAllProductsUseCase
+
+    @Binds
+    @Singleton
+    fun bindGetProductDetailsUseCase(useCase: GetProductDetailsUseCaseImpl): GetProductDetailsUseCase
 
     @Binds
     @Singleton
