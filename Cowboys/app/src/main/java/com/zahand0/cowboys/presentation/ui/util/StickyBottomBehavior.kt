@@ -1,5 +1,7 @@
 package com.zahand0.cowboys.presentation.ui.util
 
+import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.view.View
 import android.view.View.SCROLL_AXIS_VERTICAL
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -31,8 +33,21 @@ class StickyBottomBehavior(private val anchorId: Int) :
         val anchor: View = coordinatorLayout.findViewById(anchorId)
         val anchorLocation = IntArray(2)
         anchor.getLocationInWindow(anchorLocation)
-        val coordBottom: Int = coordinatorLayout.getBottom()
+        val coordBottom: Int = coordinatorLayout.bottom
         //vertical position, cannot scroll over the bottom of the coordinator layout
-        child.y = min(anchorLocation[1], coordBottom - child.height).toFloat()
+        child.y = min(
+            anchorLocation[1],
+            coordBottom - child.height - getNavigationBarHeight(target.resources)
+        ).toFloat()
+    }
+
+    @SuppressLint("DiscouragedApi", "InternalInsetResource")
+    fun getNavigationBarHeight(resources: Resources): Int {
+        var result = 0
+        val resourceId: Int = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
     }
 }

@@ -13,6 +13,8 @@
     <color name="light_grey">#FFF4F4F4</color>
     <color name="text_secondary">@color/silver_chalice</color>
     <color name="red">#FFED4337</color>
+    <color name="green_success">#DE4CAF50</color>
+    <color name="red_cancel">#DEF44336</color>
     <color name="light_red">#FFFF5252</color>
     <color name="error">@color/red</color>
     <color name="appbar_alter">@color/white</color>

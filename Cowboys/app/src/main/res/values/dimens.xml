@@ -19,6 +19,7 @@
     <dimen name="text_body_small_size">12sp</dimen>
     <dimen name="text_label_large_size">14sp</dimen>
     <dimen name="text_label_medium_size">12sp</dimen>
+    <dimen name="text_label_small_size">10sp</dimen>
     <dimen name="text_h1_line">2sp</dimen>
 
     <dimen name="logo_size">194dp</dimen>

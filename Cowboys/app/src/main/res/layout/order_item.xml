@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/normal_100">
+
+    <ImageView
+        android:id="@+id/image_product"
+        android:layout_width="@dimen/product_item_image_size"
+        android:layout_height="@dimen/product_item_image_size"
+        android:contentDescription="@string/product_item_image_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/text_product_number_date"
+        style="@style/TextAppearance.Order.ProductNumberDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:paddingBottom="@dimen/normal_50"
+        app:layout_constraintEnd_toStartOf="@id/button_more"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/image_product"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Product number date" />
+
+    <TextView
+        android:id="@+id/text_product_status"
+        style="@style/TextAppearance.Order.Status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/normal_50"
+        app:layout_constraintEnd_toStartOf="@id/button_more"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/text_product_number_date"
+        app:layout_constraintTop_toBottomOf="@id/text_product_number_date"
+
+        app:layout_constraintVertical_bias="0"
+        tools:text="Status" />
+
+    <TextView
+        android:id="@+id/text_product_name"
+        style="@style/TextAppearance.Order.ProductName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/normal_50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/text_product_number_date"
+        app:layout_constraintTop_toBottomOf="@id/text_product_status"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Product name Product name Product name Product name Product name " />
+
+
+    <TextView
+        android:id="@+id/text_delivery_date"
+        style="@style/TextAppearance.Order.Details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/text_product_number_date"
+        app:layout_constraintTop_toBottomOf="@id/text_product_name"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Delivery date" />
+
+    <TextView
+        android:id="@+id/text_delivery_address"
+        style="@style/TextAppearance.Order.Details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/text_product_number_date"
+        app:layout_constraintTop_toBottomOf="@id/text_delivery_date"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Delivery address" />
+
+    <TextView
+        android:id="@+id/text_cancel_date"
+        style="@style/TextAppearance.Order.Details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/text_product_number_date"
+        app:layout_constraintTop_toBottomOf="@id/text_delivery_address"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Cancel date" />
+
+    <ImageButton
+        android:id="@+id/button_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

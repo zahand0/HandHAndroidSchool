@@ -1,4 +1,4 @@
-package com.zahand0.cowboys.presentation.ui.screen.catalog.products
+package com.zahand0.cowboys.presentation.ui.util
 
 import android.content.Context
 import android.graphics.Canvas

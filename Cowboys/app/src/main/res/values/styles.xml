@@ -48,6 +48,10 @@
         <item name="android:textSize">@dimen/text_label_medium_size</item>
     </style>
 
+    <style name="TextAppearance.Label.Small">
+        <item name="android:textSize">@dimen/text_label_small_size</item>
+    </style>
+
     <style name="TextAppearance.Subtitle" parent="TextAppearance.Label.Medium">
         <item name="android:textColor">@color/text_secondary</item>
     </style>
@@ -96,6 +100,11 @@
 
     <style name="TextAppearance.Button" parent="TextAppearance.Body">
         <item name="android:textSize">@dimen/text_body_large_size</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="TextAppearance.TabLayout" parent="TextAppearance.Body.Medium">
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.08</item>
     </style>
@@ -215,6 +224,36 @@
     <style name="ThemeOverlay.App.Card" parent="">
         <item name="colorOutline">@color/transparent</item>
         <item name="colorSecondary">@color/seashell</item>
+    </style>
+
+    <style name="Widget.App.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="tabIndicatorFullWidth">true</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabTextAppearance">@style/TextAppearance.TabLayout</item>
+        <item name="tabTextColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Order.ProductNumberDate" parent="TextAppearance.Label.Small">
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="TextAppearance.Order.Status" parent="TextAppearance.Body.Medium" />
+
+    <style name="TextAppearance.Order.Status.InWork" parent="TextAppearance.Body.Medium">
+        <item name="android:textColor">@color/green_success</item>
+    </style>
+
+    <style name="TextAppearance.Order.Status.Cancel" parent="TextAppearance.Body.Medium">
+        <item name="android:textColor">@color/red_cancel</item>
+    </style>
+
+    <style name="TextAppearance.Order.ProductName" parent="TextAppearance.Body.Small" />
+
+    <style name="TextAppearance.Order.Details" parent="TextAppearance.Label.Small">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/text_secondary</item>
     </style>
 
 </resources>

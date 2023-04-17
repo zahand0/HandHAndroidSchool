@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Cowboys</string>
+    <string name="empty" />
     <string name="sign_in">Войти</string>
     <string name="sign_out">Выйти</string>
     <string name="my_orders">Мои заказы</string>
@@ -33,4 +34,18 @@
     <string name="profile_app_version">Приложение %1$s</string>
     <string name="product_size_hint">Размер</string>
     <string name="product_buy_action">Купить сейчас</string>
+
+    <string name="orders_title">@string/my_orders</string>
+    <string name="tab_all_orders">Все</string>
+    <string name="tab_active_orders">Активные</string>
+    <string name="order_status_in_work">В работе</string>
+    <string name="order_status_cancelled">Отменен</string>
+    <string name="order_status_done">Доставлен</string>
+    <string name="order_cancelled">Был отменен %s в %s</string>
+    <string name="order_delivery_address">Адрес доставки: %s</string>
+    <string name="order_delivery_date">Дата доставки: %s в %s</string>
+    <string name="order_number_date">Заказ №%s от %s %s</string>
+    <string name="order_name">%s × %s • %s</string>
+
+
 </resources>

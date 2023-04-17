@@ -1,6 +1,7 @@
 package com.zahand0.cowboys.data
 
 import android.accounts.AuthenticatorException
+import com.zahand0.cowboys.domain.model.Order
 import com.zahand0.cowboys.domain.model.Product
 import com.zahand0.cowboys.domain.model.ProductDetails
 import com.zahand0.cowboys.domain.model.User
@@ -51,6 +52,20 @@ class MockRepository @Inject constructor() : Repository {
     override suspend fun getUser(): Result<User> {
         randomDelay()
         return randomResult(user)
+    }
+
+    override suspend fun getOrders(): Result<List<Order>> {
+        randomDelay()
+        return randomResult(
+            StubData.ordersList
+        )
+    }
+
+    override suspend fun getActiveOrders(): Result<List<Order>> {
+        randomDelay()
+        return randomResult(
+            StubData.ordersList.filter { it.status == "in_work" }
+        )
     }
 
     private suspend fun randomDelay() {

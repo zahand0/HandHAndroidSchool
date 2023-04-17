@@ -2,6 +2,10 @@ package com.zahand0.cowboys.di
 
 import com.zahand0.cowboys.data.MockRepository
 import com.zahand0.cowboys.domain.repository.Repository
+import com.zahand0.cowboys.domain.use_cases.get_active_orders.GetActiveOrdersUseCase
+import com.zahand0.cowboys.domain.use_cases.get_active_orders.GetActiveOrdersUseCaseImpl
+import com.zahand0.cowboys.domain.use_cases.get_all_orders.GetAllOrdersUseCase
+import com.zahand0.cowboys.domain.use_cases.get_all_orders.GetAllOrdersUseCaseImpl
 import com.zahand0.cowboys.domain.use_cases.get_all_products.GetAllProductsUseCase
 import com.zahand0.cowboys.domain.use_cases.get_all_products.GetAllProductsUseCaseImpl
 import com.zahand0.cowboys.domain.use_cases.get_app_version.GetAppVersionUseCase
@@ -51,4 +55,12 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindGetAppVersionUserCase(useCase: GetAppVersionUseCaseImpl): GetAppVersionUseCase
+
+    @Binds
+    @Singleton
+    fun bindGetAllOrdersUseCase(useCase: GetAllOrdersUseCaseImpl): GetAllOrdersUseCase
+
+    @Binds
+    @Singleton
+    fun bindGetActiveOrdersUseCase(useCase: GetActiveOrdersUseCaseImpl): GetActiveOrdersUseCase
 }

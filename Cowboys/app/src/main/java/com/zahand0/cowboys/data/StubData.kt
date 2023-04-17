@@ -2,6 +2,7 @@ package com.zahand0.cowboys.data
 
 import androidx.core.graphics.toColorInt
 import com.zahand0.cowboys.domain.model.Badge
+import com.zahand0.cowboys.domain.model.Order
 import com.zahand0.cowboys.domain.model.Product
 import com.zahand0.cowboys.domain.model.ProductDetails
 import com.zahand0.cowboys.domain.model.ProductSize
@@ -408,6 +409,69 @@ object StubData {
             category = "Куртка утепленная",
             price = 3999,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW0MF7Y_18771831_1_v1_2x.jpg"
+        ),
+    )
+
+    val ordersList = listOf(
+        Order(
+            id = UUID.randomUUID().toString(),
+            number = 1234,
+            product = products[0],
+            productPreview = products[0].preview,
+            productQuantity = 1,
+            productSize = "XL",
+            createdAt = "2023-04-15T18:31:42+03:00",
+            etd = "2023-04-20T10:00:00+03:00",
+            deliveryAddress = "г. Саранск, ул. Демократическая, 14",
+            status = "in_work"
+        ),
+        Order(
+            id = UUID.randomUUID().toString(),
+            number = 1234,
+            product = products[0],
+            productPreview = products[0].preview,
+            productQuantity = 1,
+            productSize = "XL",
+            createdAt = "2023-04-15T18:31:42+03:00",
+            etd = "2023-04-20T10:00:00+03:00",
+            deliveryAddress = "г. Саранск, ул. Демократическая, 14",
+            status = "cancelled"
+        ),
+        Order(
+            id = UUID.randomUUID().toString(),
+            number = 2222,
+            product = products[1],
+            productPreview = products[1].preview,
+            productQuantity = 1,
+            productSize = "XL",
+            createdAt = "2023-04-15T18:31:42+03:00",
+            etd = "2023-04-20T10:00:00+03:00",
+            deliveryAddress = "г. Саранск, ул. Демократическая, 14",
+            status = "done"
+        ),
+        Order(
+            id = UUID.randomUUID().toString(),
+            number = 3333,
+            product = products[2],
+            productPreview = products[2].preview,
+            productQuantity = 5,
+            productSize = "XXL",
+            createdAt = "2023-04-16T18:31:42+03:00",
+            etd = "2023-04-21T10:00:00+03:00",
+            deliveryAddress = "г. Саранск, ул. Демократическая, 14",
+            status = "in_work"
+        ),
+        Order(
+            id = UUID.randomUUID().toString(),
+            number = 4444,
+            product = products[3],
+            productPreview = products[3].preview,
+            productQuantity = 2,
+            productSize = "XL",
+            createdAt = "2023-04-15T18:31:42+03:00",
+            etd = "2023-04-20T10:00:00+03:00",
+            deliveryAddress = "г. Саранск, ул. Демократическая, 14",
+            status = "cancelled"
         ),
     )
 }

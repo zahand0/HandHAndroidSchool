@@ -12,10 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.FragmentCatalogBinding
-import com.zahand0.cowboys.presentation.ui.screen.catalog.products.ProductItemDecoration
 import com.zahand0.cowboys.presentation.ui.screen.catalog.products.ProductsAdapter
 import com.zahand0.cowboys.presentation.ui.screen.product.ProductFragment
 import com.zahand0.cowboys.presentation.ui.screen.profile.ProfileFragment
+import com.zahand0.cowboys.presentation.ui.util.ProductItemDecoration
 import com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
