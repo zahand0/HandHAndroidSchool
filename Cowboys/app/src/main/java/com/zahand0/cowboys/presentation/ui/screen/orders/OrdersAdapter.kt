@@ -108,6 +108,7 @@ class OrdersAdapter(
                         )
                         textDeliveryDate.isVisible = false
                         textDeliveryAddress.isVisible = false
+                        textCancelDate.isVisible = true
                     }
 
                     else -> {
@@ -121,6 +122,7 @@ class OrdersAdapter(
                         )
                         textDeliveryDate.isVisible = true
                         textDeliveryAddress.isVisible = true
+                        textCancelDate.isVisible = false
                     }
                 }
             }
