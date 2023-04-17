@@ -58,8 +58,8 @@ class OrdersAdapter(
 
                 textCancelDate.text = root.context.resources.getString(
                     R.string.order_cancelled,
-                    toDateString(order.etd, "DD.MM.YYYY"),
-                    toDateString(order.etd, "HH:mm")
+                    toDateString(order.etd, "dd.MM.YYYY"),
+                    toDateString(order.etd, "hh:mm")
                 )
                 textDeliveryAddress.text = root.context.resources.getString(
                     R.string.order_delivery_address,
@@ -67,8 +67,8 @@ class OrdersAdapter(
                 )
                 textDeliveryDate.text = root.context.resources.getString(
                     R.string.order_delivery_date,
-                    toDateString(order.etd, "DD.MM.YYYY"),
-                    toDateString(order.etd, "HH:mm")
+                    toDateString(order.etd, "dd.MM.YYYY"),
+                    toDateString(order.etd, "hh:mm")
                 )
                 textProductName.text = root.context.resources.getString(
                     R.string.order_name,
@@ -87,8 +87,8 @@ class OrdersAdapter(
                 textProductNumberDate.text = root.context.resources.getString(
                     R.string.order_number_date,
                     order.number.toString(),
-                    toDateString(order.createdAt, "DD.MM.YYYY"),
-                    toDateString(order.createdAt, "HH:mm")
+                    toDateString(order.createdAt, "dd.MM.YYYY"),
+                    toDateString(order.createdAt, "hh:mm")
                 )
                 imageProduct.load(order.productPreview) {
                     val corners =
