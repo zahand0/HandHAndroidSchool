@@ -412,7 +412,7 @@ object StubData {
         ),
     )
 
-    val ordersList = listOf(
+    val ordersList = mutableListOf(
         Order(
             id = UUID.randomUUID().toString(),
             number = 1234,
@@ -474,4 +474,14 @@ object StubData {
             status = "cancelled"
         ),
     )
+
+    fun cancelOrder(orderId: String): Order? {
+        val index = ordersList.indexOfFirst { it.id == orderId }
+        if (index != -1) {
+            ordersList[index] = ordersList[index].copy(status = "cancelled")
+        }
+        return ordersList.getOrNull(index)
+    }
+
+
 }

@@ -14,4 +14,5 @@ interface Repository {
     suspend fun getUser(): Result<User>
     suspend fun getOrders(): Result<List<Order>>
     suspend fun getActiveOrders(): Result<List<Order>>
+    suspend fun cancelOrder(orderId: String): Result<Order>
 }

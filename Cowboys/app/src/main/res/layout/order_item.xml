@@ -93,11 +93,10 @@
         app:layout_constraintVertical_bias="0"
         tools:text="Cancel date" />
 
-    <ImageButton
+    <com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressImageButton
         android:id="@+id/button_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/transparent"
         android:src="@drawable/ic_more"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

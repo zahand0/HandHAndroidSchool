@@ -68,6 +68,16 @@ class MockRepository @Inject constructor() : Repository {
         )
     }
 
+    override suspend fun cancelOrder(orderId: String): Result<Order> {
+        if ((0..100).random() < 10) {
+            return Result.failure(RuntimeException())
+        } else {
+            val result = StubData.cancelOrder(orderId)
+            if (result != null) return Result.success(result)
+            return Result.failure(NoSuchElementException())
+        }
+    }
+
     private suspend fun randomDelay() {
         delay((100L..1000L).random())
     }

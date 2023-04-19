@@ -66,6 +66,11 @@ class ProgressContainer @JvmOverloads constructor(
         layoutNotice.findViewById<Button>(R.id.button_refresh)?.setOnClickListener { onClick() }
     }
 
+    fun setButtonText(text: String) {
+        layoutNotice.findViewById<Button>(R.id.button_refresh)?.text = text
+    }
+
+
     private fun findContentView(): View? =
         children.firstOrNull {
             it.id != R.id.layout_loading && it.id != R.id.layout_notice

@@ -11,26 +11,23 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.OrderItemBinding
-import com.zahand0.cowboys.domain.model.Order
 import com.zahand0.cowboys.presentation.ui.util.toDateString
 
 class OrdersAdapter(
     private val onMoreClick: (orderId: String) -> Unit,
     private val onClick: (productId: String) -> Unit
-) : ListAdapter<Order, OrdersAdapter.ViewHolder>(DiffCallback()) {
+) : ListAdapter<OrderState, OrdersAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             binding = OrderItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             ),
-            onClick = { onClick(getItem(it).product.id) },
-            onMoreClick = { onMoreClick(getItem(it).id) }
+            onClick = { onClick(getItem(it).order.product.id) },
+            onMoreClick = { onMoreClick(getItem(it).order.id) }
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.itemView.setOnClickListener { onClick(item.id) }
         holder.bind(getItem(position))
     }
 
@@ -51,33 +48,31 @@ class OrdersAdapter(
             }
         }
 
-        fun bind(order: Order) {
+        fun bind(orderState: OrderState) {
 
             with(binding) {
-
-
                 textCancelDate.text = root.context.resources.getString(
                     R.string.order_cancelled,
-                    toDateString(order.etd, "dd.MM.YYYY"),
-                    toDateString(order.etd, "hh:mm")
+                    toDateString(orderState.order.etd, "dd.MM.YYYY"),
+                    toDateString(orderState.order.etd, "hh:mm")
                 )
                 textDeliveryAddress.text = root.context.resources.getString(
                     R.string.order_delivery_address,
-                    order.deliveryAddress
+                    orderState.order.deliveryAddress
                 )
                 textDeliveryDate.text = root.context.resources.getString(
                     R.string.order_delivery_date,
-                    toDateString(order.etd, "dd.MM.YYYY"),
-                    toDateString(order.etd, "hh:mm")
+                    toDateString(orderState.order.etd, "dd.MM.YYYY"),
+                    toDateString(orderState.order.etd, "hh:mm")
                 )
                 textProductName.text = root.context.resources.getString(
                     R.string.order_name,
-                    order.productQuantity.toString(),
-                    order.productSize,
-                    order.product.title
+                    orderState.order.productQuantity.toString(),
+                    orderState.order.productSize,
+                    orderState.order.product.title
                 )
                 textProductStatus.setText(
-                    when (order.status) {
+                    when (orderState.order.status) {
                         "in_work" -> R.string.order_status_in_work
                         "cancelled" -> R.string.order_status_cancelled
                         "done" -> R.string.order_status_done
@@ -86,17 +81,18 @@ class OrdersAdapter(
                 )
                 textProductNumberDate.text = root.context.resources.getString(
                     R.string.order_number_date,
-                    order.number.toString(),
-                    toDateString(order.createdAt, "dd.MM.YYYY"),
-                    toDateString(order.createdAt, "hh:mm")
+                    orderState.order.number.toString(),
+                    toDateString(orderState.order.createdAt, "dd.MM.YYYY"),
+                    toDateString(orderState.order.createdAt, "hh:mm")
                 )
-                imageProduct.load(order.productPreview) {
+                imageProduct.load(orderState.order.productPreview) {
                     val corners =
                         binding.root.context.resources.getDimension(R.dimen.product_item_image_corner_size)
                     transformations(RoundedCornersTransformation(corners))
                 }
-
-                when (order.status) {
+                buttonMore.isVisible = orderState.order.status == "in_work"
+                buttonMore.isLoading = orderState.isLoading
+                when (orderState.order.status) {
                     "cancelled" -> {
                         imageProduct.imageAlpha = CANCELLED_ORDER_IMAGE_ALPHA
                         textProductStatus.setTextColor(
@@ -134,17 +130,17 @@ class OrdersAdapter(
         }
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<Order>() {
+    private class DiffCallback : DiffUtil.ItemCallback<OrderState>() {
         override fun areItemsTheSame(
-            oldItem: Order,
-            newItem: Order
+            oldItem: OrderState,
+            newItem: OrderState
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.order.id == newItem.order.id
         }
 
         override fun areContentsTheSame(
-            oldItem: Order,
-            newItem: Order
+            oldItem: OrderState,
+            newItem: OrderState
         ): Boolean {
             return oldItem == newItem
         }

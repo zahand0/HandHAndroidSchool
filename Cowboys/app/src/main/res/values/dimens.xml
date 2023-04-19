@@ -34,4 +34,8 @@
 
     <dimen name="profile_image_size">90dp</dimen>
     <dimen name="product_image_preview_item_card_corner_radius">8dp</dimen>
+
+    <dimen name="view_progress_image_button_size">24dp</dimen>
+
+
 </resources>
