@@ -1,6 +1,9 @@
 package com.zahand0.cowboys.di
 
-import com.zahand0.cowboys.data.MockRepository
+import android.content.Context
+import com.zahand0.cowboys.data.repository.DataStoreOperationsImpl
+import com.zahand0.cowboys.data.repository.MockRepository
+import com.zahand0.cowboys.domain.repository.DataStoreOperations
 import com.zahand0.cowboys.domain.repository.Repository
 import com.zahand0.cowboys.domain.use_cases.cancel_order.CancelOrderUseCase
 import com.zahand0.cowboys.domain.use_cases.cancel_order.CancelOrderUseCaseImpl
@@ -22,7 +25,9 @@ import com.zahand0.cowboys.domain.use_cases.sign_out.SignOutUseCase
 import com.zahand0.cowboys.domain.use_cases.sign_out.SignOutUseCaseImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -31,42 +36,42 @@ import javax.inject.Singleton
 interface RepositoryModule {
 
     @Binds
-    @Singleton
     fun bindRepository(repository: MockRepository): Repository
 
     @Binds
-    @Singleton
     fun bindGetAllProductsUseCase(useCase: GetAllProductsUseCaseImpl): GetAllProductsUseCase
 
     @Binds
-    @Singleton
     fun bindGetProductDetailsUseCase(useCase: GetProductDetailsUseCaseImpl): GetProductDetailsUseCase
 
     @Binds
-    @Singleton
     fun bindSignInUseCase(useCase: SignInUseCaseImpl): SignInUseCase
 
     @Binds
-    @Singleton
     fun bindSignOutUseCase(useCase: SignOutUseCaseImpl): SignOutUseCase
 
     @Binds
-    @Singleton
     fun bindGetUserUserCase(useCase: GetUserUseCaseImpl): GetUserUseCase
 
     @Binds
-    @Singleton
     fun bindGetAppVersionUserCase(useCase: GetAppVersionUseCaseImpl): GetAppVersionUseCase
 
     @Binds
-    @Singleton
     fun bindGetAllOrdersUseCase(useCase: GetAllOrdersUseCaseImpl): GetAllOrdersUseCase
 
     @Binds
-    @Singleton
     fun bindGetActiveOrdersUseCase(useCase: GetActiveOrdersUseCaseImpl): GetActiveOrdersUseCase
 
     @Binds
-    @Singleton
     fun bindCancelOrderUseCase(useCase: CancelOrderUseCaseImpl): CancelOrderUseCase
+
+    companion object {
+        @Provides
+        @Singleton
+        fun provideDataStoreOperations(
+            @ApplicationContext context: Context
+        ): DataStoreOperations {
+            return DataStoreOperationsImpl(context = context)
+        }
+    }
 }

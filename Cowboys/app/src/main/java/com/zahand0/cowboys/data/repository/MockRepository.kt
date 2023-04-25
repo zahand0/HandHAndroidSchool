@@ -1,6 +1,7 @@
-package com.zahand0.cowboys.data
+package com.zahand0.cowboys.data.repository
 
 import android.accounts.AuthenticatorException
+import com.zahand0.cowboys.data.StubData
 import com.zahand0.cowboys.domain.model.Order
 import com.zahand0.cowboys.domain.model.Product
 import com.zahand0.cowboys.domain.model.ProductDetails
@@ -91,7 +92,7 @@ class MockRepository @Inject constructor() : Repository {
 
     companion object {
 
-        private const val LOGIN = "admin@mail.com"
+        private const val LOGIN = "user1@mail.com"
         private const val PASSWORD = "12345678"
 
         private val user = User(

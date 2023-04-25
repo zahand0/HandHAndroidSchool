@@ -47,8 +47,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.fragment:fragment-ktx:1.5.6'
     implementation 'io.coil-kt:coil:2.2.2'
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.45"
+    implementation "com.google.dagger:hilt-android:${versions.dagger}"
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+    kapt "com.google.dagger:hilt-compiler:${versions.dagger}"
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.3"
+
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
 }
