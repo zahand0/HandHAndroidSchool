@@ -53,6 +53,13 @@ class OrdersFragment : Fragment() {
         setupPager()
         setupTabs()
         setupProgressContainer()
+        setupTopBar()
+    }
+
+    private fun setupTopBar() {
+        binding.topAppBar.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun setupAdapters() {
