@@ -1,11 +1,11 @@
 package com.zahand0.cowboys.data
 
 import androidx.core.graphics.toColorInt
-import com.zahand0.cowboys.domain.model.Badge
-import com.zahand0.cowboys.domain.model.Order
-import com.zahand0.cowboys.domain.model.Product
-import com.zahand0.cowboys.domain.model.ProductDetails
-import com.zahand0.cowboys.domain.model.ProductSize
+import com.zahand0.cowboys.domain.model.BadgeModel
+import com.zahand0.cowboys.domain.model.OrderModel
+import com.zahand0.cowboys.domain.model.ProductDetailsModel
+import com.zahand0.cowboys.domain.model.ProductModel
+import com.zahand0.cowboys.domain.model.ProductSizeModel
 import java.util.UUID
 
 object StubData {
@@ -14,13 +14,13 @@ object StubData {
         UUID.randomUUID().toString()
     }
     val productDetailsList = listOf(
-        ProductDetails(
+        ProductDetailsModel(
             id = productIds[0],
             title = "PUMA ESS+ Tape Sweatpants TR cl",
-            category = "Брюки спортивные",
+            department = "Брюки спортивные",
             price = 4990,
             preview = "https://a.lmcdn.ru/product/R/T/RTLABD432202_19416359_1_v1_2x.jpg",
-            badge = Badge(
+            badge = BadgeModel(
                 value = "Хит сезона",
                 color = "#2E7D32".toColorInt()
             ),
@@ -31,23 +31,23 @@ object StubData {
                 "https://a.lmcdn.ru/img600x866/R/T/RTLABD432202_19416362_4_v1_2x.jpg",
             ),
             sizes = listOf(
-                ProductSize(
+                ProductSizeModel(
                     value = "S",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "M",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "L",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "XL",
                     isAvailable = false
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "2XL",
                     isAvailable = true
                 ),
@@ -73,13 +73,13 @@ object StubData {
             )
         ),
         //1
-        ProductDetails(
+        ProductDetailsModel(
             id = productIds[1],
             title = "O'stin",
-            category = "Брюки",
+            department = "Брюки",
             price = 1999,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW0FG82_17574293_1_v1_2x.jpg",
-            badge = Badge(
+            badge = BadgeModel(
                 value = "Хит сезона",
                 color = "#2E7D32".toColorInt()
             ),
@@ -90,23 +90,23 @@ object StubData {
                 "https://a.lmcdn.ru/img600x866/M/P/MP002XW0FG82_17574296_4_v1_2x.jpg",
             ),
             sizes = listOf(
-                ProductSize(
+                ProductSizeModel(
                     value = "S",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "M",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "L",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "XL",
                     isAvailable = false
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "2XL",
                     isAvailable = true
                 ),
@@ -134,13 +134,13 @@ object StubData {
             )
         ),
         //2
-        ProductDetails(
+        ProductDetailsModel(
             id = productIds[2],
             title = "Barmariska",
-            category = "Кардиган",
+            department = "Кардиган",
             price = 13999,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW0KJN0_17886905_1_v1.jpeg",
-            badge = Badge(
+            badge = BadgeModel(
                 value = "Хит сезона",
                 color = "#2E7D32".toColorInt()
             ),
@@ -152,23 +152,23 @@ object StubData {
                 "https://a.lmcdn.ru/img600x866/M/P/MP002XW0KJN0_17886909_5_v1.jpeg",
             ),
             sizes = listOf(
-                ProductSize(
+                ProductSizeModel(
                     value = "S",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "M",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "L",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "XL",
                     isAvailable = false
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "2XL",
                     isAvailable = true
                 ),
@@ -195,13 +195,13 @@ object StubData {
             )
         ),
         //3
-        ProductDetails(
+        ProductDetailsModel(
             id = productIds[3],
             title = "PlayToday",
-            category = "Куртка",
+            department = "Куртка",
             price = 4799,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XB01G7M_16658844_1_v1.jpg",
-            badge = Badge(
+            badge = BadgeModel(
                 value = "Хит сезона",
                 color = "#2E7D32".toColorInt()
             ),
@@ -213,23 +213,23 @@ object StubData {
                 "https://a.lmcdn.ru/img600x866/M/P/MP002XB01G7M_16658848_5_v1.jpg",
             ),
             sizes = listOf(
-                ProductSize(
+                ProductSizeModel(
                     value = "S",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "M",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "L",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "XL",
                     isAvailable = false
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "2XL",
                     isAvailable = true
                 ),
@@ -251,13 +251,13 @@ object StubData {
             )
         ),
         //4
-        ProductDetails(
+        ProductDetailsModel(
             id = productIds[4],
             title = "Colin's",
-            category = "Юбка",
+            department = "Юбка",
             price = 1990,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW15ULK_17398729_1_v1_2x.jpg",
-            badge = Badge(
+            badge = BadgeModel(
                 value = "Хит сезона",
                 color = "#2E7D32".toColorInt()
             ),
@@ -268,23 +268,23 @@ object StubData {
                 "https://a.lmcdn.ru/img600x866/M/P/MP002XW15ULK_17398732_4_v1_2x.jpg",
             ),
             sizes = listOf(
-                ProductSize(
+                ProductSizeModel(
                     value = "S",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "M",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "L",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "XL",
                     isAvailable = false
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "2XL",
                     isAvailable = true
                 ),
@@ -306,13 +306,13 @@ object StubData {
             )
         ),
         //5
-        ProductDetails(
+        ProductDetailsModel(
             id = productIds[5],
             title = "Befree",
-            category = "Куртка утепленная",
+            department = "Куртка утепленная",
             price = 3999,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW0MF7Y_18771831_1_v1_2x.jpg",
-            badge = Badge(
+            badge = BadgeModel(
                 value = "Хит сезона",
                 color = "#2E7D32".toColorInt()
             ),
@@ -324,23 +324,23 @@ object StubData {
                 "https://a.lmcdn.ru/img600x866/M/P/MP002XW0MF7Y_18771835_5_v1_2x.jpg",
             ),
             sizes = listOf(
-                ProductSize(
+                ProductSizeModel(
                     value = "S",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "M",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "L",
                     isAvailable = true
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "XL",
                     isAvailable = false
                 ),
-                ProductSize(
+                ProductSizeModel(
                     value = "2XL",
                     isAvailable = true
                 ),
@@ -368,52 +368,52 @@ object StubData {
         ),
     )
     val products = listOf(
-        Product(
+        ProductModel(
             id = productIds[0],
             title = "PUMA ESS+ Tape Sweatpants TR cl",
-            category = "Брюки спортивные",
+            department = "Брюки спортивные",
             price = 4990,
             preview = "https://a.lmcdn.ru/product/R/T/RTLABD432202_19416359_1_v1_2x.jpg"
         ),
-        Product(
+        ProductModel(
             id = productIds[1],
             title = "O'stin",
-            category = "Брюки",
+            department = "Брюки",
             price = 1999,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW0FG82_17574293_1_v1_2x.jpg"
         ),
-        Product(
+        ProductModel(
             id = productIds[2],
             title = "Barmariska",
-            category = "Кардиган",
+            department = "Кардиган",
             price = 13999,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW0KJN0_17886905_1_v1.jpeg"
         ),
-        Product(
+        ProductModel(
             id = productIds[3],
             title = "PlayToday",
-            category = "Куртка",
+            department = "Куртка",
             price = 4799,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XB01G7M_16658844_1_v1.jpg"
         ),
-        Product(
+        ProductModel(
             id = productIds[4],
             title = "Colin's",
-            category = "Юбка",
+            department = "Юбка",
             price = 1990,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW15ULK_17398729_1_v1_2x.jpg"
         ),
-        Product(
+        ProductModel(
             id = productIds[5],
             title = "Befree",
-            category = "Куртка утепленная",
+            department = "Куртка утепленная",
             price = 3999,
             preview = "https://a.lmcdn.ru/img600x866/M/P/MP002XW0MF7Y_18771831_1_v1_2x.jpg"
         ),
     )
 
     val ordersList = mutableListOf(
-        Order(
+        OrderModel(
             id = UUID.randomUUID().toString(),
             number = 1234,
             product = products[0],
@@ -425,7 +425,7 @@ object StubData {
             deliveryAddress = "г. Саранск, ул. Демократическая, 14",
             status = "in_work"
         ),
-        Order(
+        OrderModel(
             id = UUID.randomUUID().toString(),
             number = 1234,
             product = products[0],
@@ -437,7 +437,7 @@ object StubData {
             deliveryAddress = "г. Саранск, ул. Демократическая, 14",
             status = "cancelled"
         ),
-        Order(
+        OrderModel(
             id = UUID.randomUUID().toString(),
             number = 2222,
             product = products[1],
@@ -449,7 +449,7 @@ object StubData {
             deliveryAddress = "г. Саранск, ул. Демократическая, 14",
             status = "done"
         ),
-        Order(
+        OrderModel(
             id = UUID.randomUUID().toString(),
             number = 3333,
             product = products[2],
@@ -461,7 +461,7 @@ object StubData {
             deliveryAddress = "г. Саранск, ул. Демократическая, 14",
             status = "in_work"
         ),
-        Order(
+        OrderModel(
             id = UUID.randomUUID().toString(),
             number = 4444,
             product = products[3],
@@ -475,7 +475,7 @@ object StubData {
         ),
     )
 
-    fun cancelOrder(orderId: String): Order? {
+    fun cancelOrder(orderId: String): OrderModel? {
         val index = ordersList.indexOfFirst { it.id == orderId }
         if (index != -1) {
             ordersList[index] = ordersList[index].copy(status = "cancelled")

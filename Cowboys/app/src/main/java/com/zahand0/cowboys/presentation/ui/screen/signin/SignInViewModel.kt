@@ -2,7 +2,7 @@ package com.zahand0.cowboys.presentation.ui.screen.signin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zahand0.cowboys.domain.model.User
+import com.zahand0.cowboys.domain.model.UserModel
 import com.zahand0.cowboys.domain.use_cases.sign_in.SignInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -51,7 +51,7 @@ class SignInViewModel @Inject constructor(
     fun signIn(
         login: String?,
         password: String?,
-        onResultListener: (Result<User>) -> Unit
+        onResultListener: (Result<UserModel>) -> Unit
     ) {
         _isLoginValid.value = isLoginValid(login)
         _isPasswordValid.value = isPasswordValid(password)

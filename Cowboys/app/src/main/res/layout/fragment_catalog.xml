@@ -11,8 +11,7 @@
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        app:layout_constraintBottom_toTopOf="@id/progress_container_products"
+        app:layout_constraintBottom_toTopOf="@id/nested_scroll"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -30,22 +29,31 @@
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
-    <com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
-        android:id="@+id/progress_container_products"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/coordinator">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_products"
+        <com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
+            android:id="@+id/progress_container_products"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_product_list"
-            android:paddingHorizontal="@dimen/normal_100"
-            tools:itemCount="3"
-            tools:listitem="@layout/product_item" />
-    </com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer>
+            android:layout_height="0dp"
+
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_products"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_product_list"
+                android:paddingHorizontal="@dimen/normal_100"
+                tools:itemCount="3"
+                tools:listitem="@layout/product_item" />
+        </com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.zahand0.cowboys.domain.use_cases.get_all_orders
 
-import com.zahand0.cowboys.domain.model.Order
+import androidx.paging.PagingData
+import com.zahand0.cowboys.domain.model.OrderModel
+import kotlinx.coroutines.flow.Flow
 
 interface GetAllOrdersUseCase {
-    suspend operator fun invoke(): Result<List<Order>>
+    operator fun invoke(): Flow<PagingData<OrderModel>>
 }

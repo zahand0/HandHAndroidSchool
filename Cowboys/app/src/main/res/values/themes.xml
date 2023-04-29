@@ -15,5 +15,6 @@
         <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
         <item name="snackbarStyle">@style/Widget.App.Snackbar.Error</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
+        <item name="popupMenuStyle">@style/Widget.App.PopupMenu</item>
     </style>
 </resources>

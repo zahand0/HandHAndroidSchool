@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.ProductSizesItemBinding
-import com.zahand0.cowboys.domain.model.ProductSize
+import com.zahand0.cowboys.domain.model.ProductSizeModel
 
 class ProductSizesAdapter(private val onItemClick: (Int) -> Unit) :
-    ListAdapter<ProductSize, ProductSizesAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<ProductSizeModel, ProductSizesAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -35,7 +35,7 @@ class ProductSizesAdapter(private val onItemClick: (Int) -> Unit) :
     class ViewHolder(private val binding: ProductSizesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(size: ProductSize) {
+        fun bind(size: ProductSizeModel) {
             with(binding.root) {
                 text = size.value
                 if (size.isAvailable) {
@@ -48,17 +48,17 @@ class ProductSizesAdapter(private val onItemClick: (Int) -> Unit) :
         }
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<ProductSize>() {
+    private class DiffCallback : DiffUtil.ItemCallback<ProductSizeModel>() {
         override fun areItemsTheSame(
-            oldItem: ProductSize,
-            newItem: ProductSize
+            oldItem: ProductSizeModel,
+            newItem: ProductSizeModel
         ): Boolean {
             return oldItem.value == newItem.value
         }
 
         override fun areContentsTheSame(
-            oldItem: ProductSize,
-            newItem: ProductSize
+            oldItem: ProductSizeModel,
+            newItem: ProductSizeModel
         ): Boolean {
             return oldItem == newItem
         }

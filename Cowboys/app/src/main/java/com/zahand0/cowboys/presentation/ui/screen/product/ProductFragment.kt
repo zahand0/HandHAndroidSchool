@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -16,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.FragmentProductBinding
-import com.zahand0.cowboys.domain.model.ProductDetails
+import com.zahand0.cowboys.domain.model.ProductDetailsModel
 import com.zahand0.cowboys.presentation.ui.screen.product.adapter.ProductDetailsAdapter
 import com.zahand0.cowboys.presentation.ui.screen.product.adapter.ProductImageCollectionAdapter
 import com.zahand0.cowboys.presentation.ui.screen.product.adapter.ProductPreviewImageCollectionAdapter
@@ -76,6 +79,7 @@ class ProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupBarsInsets()
         setupProductImagePager()
         setupProductImagePreviews()
         setupProductDetails()
@@ -83,6 +87,16 @@ class ProductFragment : Fragment() {
         setupProductListener()
         setupCoordinatorBehavior()
         setupTopBar()
+    }
+
+    private fun setupBarsInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.layoutProductDetails.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = insets.bottom
+            }
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     private fun setupTopBar() {
@@ -155,7 +169,7 @@ class ProductFragment : Fragment() {
         binding.layoutProductDetails.pagerProductImage.adapter = productImageCollectionAdapter
     }
 
-    private fun renderProgressContainer(resourceState: ResourceState<ProductDetails>) {
+    private fun renderProgressContainer(resourceState: ResourceState<ProductDetailsModel>) {
         binding.progressContainerProduct.state = when (resourceState) {
             is ResourceState.Error -> {
                 ProgressContainer.State.Notice(
@@ -175,7 +189,7 @@ class ProductFragment : Fragment() {
         }
     }
 
-    private fun setupProduct(productDetails: ProductDetails) {
+    private fun setupProduct(productDetails: ProductDetailsModel) {
         setupAdapters(productDetails)
         if (productSizeBottomSheetFragment == null) {
             createBottomSheetFragment(productDetails)
@@ -190,7 +204,7 @@ class ProductFragment : Fragment() {
         with(binding.layoutProductDetails) {
             textProductDescription.text = productDetails.description
             textProductTitle.text = productDetails.title
-            textProductCategory.text = productDetails.category
+            textProductCategory.text = productDetails.department
             textPrice.text = CurrencyUtil.currencyFormat.format(productDetails.price)
             textBadge.text = productDetails.badge.value
             textBadge.backgroundTintList = ColorStateList.valueOf(productDetails.badge.color)
@@ -200,7 +214,7 @@ class ProductFragment : Fragment() {
         }
     }
 
-    private fun createBottomSheetFragment(productDetails: ProductDetails) {
+    private fun createBottomSheetFragment(productDetails: ProductDetailsModel) {
         productSizeBottomSheetFragment = ProductSizeBottomSheetFragment(
             sizes = productDetails.sizes,
             onItemClick = {
@@ -209,7 +223,7 @@ class ProductFragment : Fragment() {
             })
     }
 
-    private fun setupAdapters(productDetails: ProductDetails) {
+    private fun setupAdapters(productDetails: ProductDetailsModel) {
         productImageCollectionAdapter.submitList(productDetails.images)
         productDetailsAdapter.submitList(productDetails.details)
         productPreviewImageCollectionAdapter.submitList(productDetails.images)

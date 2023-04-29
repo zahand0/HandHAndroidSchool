@@ -1,25 +1,29 @@
 package com.zahand0.cowboys.data.repository
 
 import android.accounts.AuthenticatorException
+import androidx.paging.PagingData
 import com.zahand0.cowboys.data.StubData
-import com.zahand0.cowboys.domain.model.Order
-import com.zahand0.cowboys.domain.model.Product
-import com.zahand0.cowboys.domain.model.ProductDetails
-import com.zahand0.cowboys.domain.model.User
+import com.zahand0.cowboys.domain.model.OrderModel
+import com.zahand0.cowboys.domain.model.ProductDetailsModel
+import com.zahand0.cowboys.domain.model.ProductModel
+import com.zahand0.cowboys.domain.model.UserModel
 import com.zahand0.cowboys.domain.repository.Repository
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class MockRepository @Inject constructor() : Repository {
 
-    override suspend fun getProducts(): Result<List<Product>> {
-        randomDelay()
-        return randomResult(
-            StubData.products
-        )
+    override fun getProducts(): Flow<PagingData<ProductModel>> {
+//        randomDelay()
+//        return randomResult(
+//            StubData.products
+//        )
+        return flow { }
     }
 
-    override suspend fun getProductDetails(productId: String): Result<ProductDetails> {
+    override suspend fun getProductDetails(productId: String): Result<ProductDetailsModel> {
         randomDelay()
         val product = StubData.productDetailsList.find { it.id == productId }
         return if (product != null) {
@@ -31,7 +35,10 @@ class MockRepository @Inject constructor() : Repository {
         }
     }
 
-    private fun randomSignInResult(isCredentialsCorrect: Boolean, user: User): Result<User> {
+    private fun randomSignInResult(
+        isCredentialsCorrect: Boolean,
+        user: UserModel
+    ): Result<UserModel> {
         if ((0..100).random() < 10) {
             return Result.failure(RuntimeException())
         } else {
@@ -40,7 +47,7 @@ class MockRepository @Inject constructor() : Repository {
         }
     }
 
-    override suspend fun signIn(login: String, password: String): Result<User> {
+    override suspend fun signIn(login: String, password: String): Result<UserModel> {
         randomDelay()
         val isCredentialsCorrect = login == LOGIN && password == PASSWORD
         return randomSignInResult(isCredentialsCorrect, user)
@@ -50,26 +57,28 @@ class MockRepository @Inject constructor() : Repository {
 
     }
 
-    override suspend fun getUser(): Result<User> {
+    override suspend fun getUser(): Result<UserModel> {
         randomDelay()
         return randomResult(user)
     }
 
-    override suspend fun getOrders(): Result<List<Order>> {
-        randomDelay()
-        return randomResult(
-            StubData.ordersList
-        )
+    override fun getOrders(): Flow<PagingData<OrderModel>> {
+//        randomDelay()
+//        return randomResult(
+//            StubData.ordersList
+//        )
+        return flow { }
     }
 
-    override suspend fun getActiveOrders(): Result<List<Order>> {
-        randomDelay()
-        return randomResult(
-            StubData.ordersList.filter { it.status == "in_work" }
-        )
+    override fun getActiveOrders(): Flow<PagingData<OrderModel>> {
+//        randomDelay()
+//        return randomResult(
+//            StubData.ordersList.filter { it.status == "in_work" }
+//        )
+        return flow { }
     }
 
-    override suspend fun cancelOrder(orderId: String): Result<Order> {
+    override suspend fun cancelOrder(orderId: String): Result<OrderModel> {
         if ((0..100).random() < 10) {
             return Result.failure(RuntimeException())
         } else {
@@ -95,7 +104,7 @@ class MockRepository @Inject constructor() : Repository {
         private const val LOGIN = "user1@mail.com"
         private const val PASSWORD = "12345678"
 
-        private val user = User(
+        private val user = UserModel(
             name = "Анна",
             surname = "Виноградова",
             occupation = "Разработчик",

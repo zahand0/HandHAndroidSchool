@@ -15,7 +15,8 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.FragmentProfileBinding
-import com.zahand0.cowboys.domain.model.User
+import com.zahand0.cowboys.domain.model.UserModel
+import com.zahand0.cowboys.presentation.ui.screen.orders.OrdersFragment
 import com.zahand0.cowboys.presentation.ui.screen.signin.SignInFragment
 import com.zahand0.cowboys.presentation.ui.util.ResourceState
 import com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
@@ -67,7 +68,7 @@ class ProfileFragment : Fragment() {
             .launchIn(lifecycleScope)
     }
 
-    private fun renderProgressContainer(resourceState: ResourceState<User>) {
+    private fun renderProgressContainer(resourceState: ResourceState<UserModel>) {
         binding.progressContainerUser.state = when (resourceState) {
             is ResourceState.Error -> {
                 ProgressContainer.State.Notice(
@@ -91,7 +92,7 @@ class ProfileFragment : Fragment() {
         binding.textAppVersion.text = getString(R.string.profile_app_version, viewModel.appVersion)
     }
 
-    private fun setupUserInfo(user: User) {
+    private fun setupUserInfo(user: UserModel) {
         with(binding) {
             imageProfileAvatar.load(user.avatarUrl) {
                 placeholder(R.drawable.profile_img_placeholder)
@@ -104,7 +105,7 @@ class ProfileFragment : Fragment() {
 
     private fun setupButtons() {
         with(binding.layoutCardButtons) {
-            buttonOrders.setOnClickListener { }
+            buttonOrders.setOnClickListener { navigateToOrders() }
             buttonSettings.setOnClickListener { }
             buttonSignOut.setOnClickListener { navigateToSignIn() }
         }
@@ -114,6 +115,12 @@ class ProfileFragment : Fragment() {
         parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         parentFragmentManager.commit {
             replace<SignInFragment>(R.id.container)
+        }
+    }
+
+    private fun navigateToOrders() {
+        parentFragmentManager.commit {
+            replace<OrdersFragment>(R.id.container)
         }
     }
 }

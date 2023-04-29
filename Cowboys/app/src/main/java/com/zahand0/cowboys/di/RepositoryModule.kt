@@ -2,7 +2,7 @@ package com.zahand0.cowboys.di
 
 import android.content.Context
 import com.zahand0.cowboys.data.repository.DataStoreOperationsImpl
-import com.zahand0.cowboys.data.repository.MockRepository
+import com.zahand0.cowboys.data.repository.RepositoryImpl
 import com.zahand0.cowboys.domain.repository.DataStoreOperations
 import com.zahand0.cowboys.domain.repository.Repository
 import com.zahand0.cowboys.domain.use_cases.cancel_order.CancelOrderUseCase
@@ -36,7 +36,7 @@ import javax.inject.Singleton
 interface RepositoryModule {
 
     @Binds
-    fun bindRepository(repository: MockRepository): Repository
+    fun bindRepository(repository: RepositoryImpl): Repository
 
     @Binds
     fun bindGetAllProductsUseCase(useCase: GetAllProductsUseCaseImpl): GetAllProductsUseCase

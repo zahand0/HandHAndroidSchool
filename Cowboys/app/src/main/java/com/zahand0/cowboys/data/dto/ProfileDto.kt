@@ -1,5 +1,5 @@
 package com.zahand0.cowboys.data.dto
 
-data class UserDto(
+data class ProfileDto(
     val data: ProfileData
 )

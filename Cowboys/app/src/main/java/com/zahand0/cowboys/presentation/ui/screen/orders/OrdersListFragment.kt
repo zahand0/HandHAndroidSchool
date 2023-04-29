@@ -5,12 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.android.material.snackbar.Snackbar
@@ -19,11 +25,12 @@ import com.zahand0.cowboys.databinding.FragmentOrdersListBinding
 import com.zahand0.cowboys.presentation.ui.screen.catalog.CatalogFragment
 import com.zahand0.cowboys.presentation.ui.screen.product.ProductFragment
 import com.zahand0.cowboys.presentation.ui.util.ProductItemDecoration
-import com.zahand0.cowboys.presentation.ui.util.ResourceState
 import com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
 import com.zahand0.cowboys.presentation.ui.util.toDateString
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class OrdersListFragment : Fragment() {
 
@@ -50,17 +57,29 @@ class OrdersListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupBarsInsets()
         setupAdapter()
         setupCancelOrderListener()
         setupProgressContainer()
     }
 
+    private fun setupBarsInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.recyclerOrders) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = insets.bottom
+            }
+            WindowInsetsCompat.CONSUMED
+        }
+    }
+
     private fun setupProgressContainer() {
         binding.progressContainerOrdersList.setOnRefreshClickListener {
-            if (requireArguments().getBoolean(ARG_LOAD_ALL_ORDERS)) {
-                viewModel.refreshAllOrders()
-            } else {
-                viewModel.refreshActiveOrders()
+            adapter.refresh()
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest { loadStates ->
+                renderOrders(loadStates)
             }
         }
     }
@@ -85,8 +104,9 @@ class OrdersListFragment : Fragment() {
                         )
                     }
                 }
+                adapter.refresh()
             }
-            .launchIn(lifecycleScope)
+            .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setupAdapter() {
@@ -110,35 +130,33 @@ class OrdersListFragment : Fragment() {
         binding.recyclerOrders.addItemDecoration(dividerDecoration)
 
         if (requireArguments().getBoolean(ARG_LOAD_ALL_ORDERS)) {
-            viewModel.allOrders.flowWithLifecycle(lifecycle).onEach {
-                renderProgressContainer(it)
-            }.launchIn(lifecycleScope)
+            viewModel.allOrders.flowWithLifecycle(lifecycle).onEach { pagingData ->
+                adapter.submitData(pagingData.map { it.toOrderState() })
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         } else {
-            viewModel.activeOrders.flowWithLifecycle(lifecycle).onEach {
-                renderProgressContainer(it)
-            }.launchIn(lifecycleScope)
+            viewModel.activeOrders.flowWithLifecycle(lifecycle).onEach { pagingData ->
+                adapter.submitData(pagingData.map { it.toOrderState() })
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
     }
 
-    private fun renderProgressContainer(resourceState: ResourceState<List<OrderState>>) {
-        binding.progressContainerOrdersList.state = when (resourceState) {
-            is ResourceState.Error -> {
+    private fun renderOrders(ordersState: CombinedLoadStates) {
+        binding.progressContainerOrdersList.state = when (ordersState.refresh) {
+            is LoadState.Loading -> {
+                ProgressContainer.State.Loading
+            }
+
+            is LoadState.Error -> {
                 binding.progressContainerOrdersList
                     .setButtonText(getString(R.string.progress_container_refresh_action))
-                setupProgressContainer()
                 ProgressContainer.State.Notice(
                     getString(R.string.unexpected_error_title),
                     getString(R.string.unexpected_error_description)
                 )
             }
 
-            ResourceState.Loading -> {
-                ProgressContainer.State.Loading
-            }
-
-            is ResourceState.Success -> {
-                adapter.submitList(resourceState.data)
-                if (resourceState.data.isEmpty()) {
+            is LoadState.NotLoading -> {
+                if (adapter.itemCount == 0) {
                     binding.progressContainerOrdersList
                         .setButtonText(getString(R.string.orders_empty_list_catalog_action))
                     binding.progressContainerOrdersList.setOnRefreshClickListener {
@@ -154,6 +172,7 @@ class OrdersListFragment : Fragment() {
                 } else {
                     ProgressContainer.State.Success
                 }
+
             }
         }
     }

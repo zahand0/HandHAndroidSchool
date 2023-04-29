@@ -1,9 +1,9 @@
 package com.zahand0.cowboys.domain.model
 
-data class Product(
+data class ProductModel(
     val id: String,
     val title: String,
-    val category: String,
+    val department: String,
     val price: Int,
     val preview: String
 )

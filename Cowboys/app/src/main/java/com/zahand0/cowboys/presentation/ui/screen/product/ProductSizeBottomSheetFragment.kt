@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahand0.cowboys.databinding.FragmentBottomSheetProductSizesBinding
-import com.zahand0.cowboys.domain.model.ProductSize
+import com.zahand0.cowboys.domain.model.ProductSizeModel
 import com.zahand0.cowboys.presentation.ui.screen.product.adapter.ProductSizesAdapter
 import com.zahand0.cowboys.presentation.ui.util.custom_view.ProductSizeCollection
 
 class ProductSizeBottomSheetFragment(
-    private val sizes: List<ProductSize>,
+    private val sizes: List<ProductSizeModel>,
     private val onItemClick: (index: Int) -> Unit
 ) : BottomSheetDialogFragment() {
 

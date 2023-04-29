@@ -2,7 +2,7 @@ package com.zahand0.cowboys.presentation.ui.screen.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zahand0.cowboys.domain.model.User
+import com.zahand0.cowboys.domain.model.UserModel
 import com.zahand0.cowboys.domain.use_cases.get_app_version.GetAppVersionUseCase
 import com.zahand0.cowboys.domain.use_cases.get_user.GetUserUseCase
 import com.zahand0.cowboys.presentation.ui.util.ResourceState
@@ -21,7 +21,7 @@ class ProfileViewModel @Inject constructor(
 
     val appVersion = getAppVersionUseCase()
 
-    private val _user = MutableStateFlow<ResourceState<User>>(ResourceState.Loading)
+    private val _user = MutableStateFlow<ResourceState<UserModel>>(ResourceState.Loading)
     val user get() = _user.asStateFlow()
 
     init {

@@ -1,11 +1,11 @@
 package com.zahand0.cowboys.presentation.ui.screen.orders
 
-import com.zahand0.cowboys.domain.model.Order
+import com.zahand0.cowboys.domain.model.OrderModel
 
 data class OrderState(
-    val order: Order,
-    val isLoading: Boolean
+    val order: OrderModel,
+    var isLoading: Boolean
 )
 
-fun Order.toOrderState(isLoading: Boolean = false): OrderState =
+fun OrderModel.toOrderState(isLoading: Boolean = false): OrderState =
     OrderState(this, isLoading)

@@ -1,11 +1,11 @@
-package com.zahand0.cowboys.domain.model
+package com.zahand0.cowboys.data.dto
 
 data class ProductDetails(
     val id: String,
     val title: String,
-    val category: String,
+    val department: String,
     val price: Int,
-    val badge: Badge,
+    val badge: List<Badge>,
     val preview: String,
     val images: List<String>,
     val sizes: List<ProductSize>,

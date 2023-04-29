@@ -1,11 +1,13 @@
 package com.zahand0.cowboys.presentation.ui.screen.orders
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
@@ -13,43 +15,59 @@ import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.OrderItemBinding
 import com.zahand0.cowboys.presentation.ui.util.toDateString
 
-class OrdersAdapter(
-    private val onMoreClick: (orderId: String) -> Unit,
-    private val onClick: (productId: String) -> Unit
-) : ListAdapter<OrderState, OrdersAdapter.ViewHolder>(DiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
+class OrdersAdapter(
+    private val onCancelClick: (orderId: String) -> Unit,
+    private val onClick: (productId: String) -> Unit
+) : PagingDataAdapter<OrderState, OrdersAdapter.ViewHolder>(DiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
             binding = OrderItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             ),
-            onClick = { onClick(getItem(it).order.product.id) },
-            onMoreClick = { onMoreClick(getItem(it).order.id) }
+            onClick = {
+                val item = snapshot()[it]
+                item?.let { onClick(item.order.product.id) }
+            },
+            onCancelClick = { position ->
+                val item = snapshot()[position]
+                item?.let {
+                    setItemLoading(position, true)
+                    onCancelClick(item.order.id)
+                }
+            }
         )
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = currentList.size
+    private fun setItemLoading(position: Int, value: Boolean) {
+        snapshot()[position]?.isLoading = value
+        notifyItemChanged(position)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(snapshot()[position])
+    }
 
     class ViewHolder(
         private val binding: OrderItemBinding,
-        onMoreClick: (adapterPosition: Int) -> Unit,
+        onCancelClick: (adapterPosition: Int) -> Unit,
         onClick: (adapterPosition: Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.buttonMore.setOnClickListener {
-                onMoreClick(adapterPosition)
+                onMenuClick(binding.menuAnchor) {
+                    onCancelClick(bindingAdapterPosition)
+                }
             }
             binding.root.setOnClickListener {
-                onClick(adapterPosition)
+                onClick(bindingAdapterPosition)
             }
         }
 
-        fun bind(orderState: OrderState) {
-
+        fun bind(orderState: OrderState?) {
+            if (orderState == null) return
             with(binding) {
                 textCancelDate.text = root.context.resources.getString(
                     R.string.order_cancelled,
@@ -123,6 +141,24 @@ class OrdersAdapter(
                 }
             }
         }
+
+        private fun onMenuClick(view: View, onClick: () -> Unit) {
+
+            val popup = PopupMenu(binding.root.context, view)
+            popup.inflate(R.menu.order_overflow_menu)
+            popup.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.order_menu_option_cancel -> {
+                        onClick()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+
 
         companion object {
             private const val CANCELLED_ORDER_IMAGE_ALPHA = 51

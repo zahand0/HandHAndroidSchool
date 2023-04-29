@@ -2,7 +2,7 @@ package com.zahand0.cowboys.presentation.ui.screen.product
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zahand0.cowboys.domain.model.ProductDetails
+import com.zahand0.cowboys.domain.model.ProductDetailsModel
 import com.zahand0.cowboys.domain.use_cases.get_product_details.GetProductDetailsUseCase
 import com.zahand0.cowboys.presentation.ui.util.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,9 +17,9 @@ class ProductViewModel @Inject constructor(
     private val getProductDetailsUseCase: GetProductDetailsUseCase
 ) : ViewModel() {
 
-    private val _product: MutableStateFlow<ResourceState<ProductDetails>> =
+    private val _product: MutableStateFlow<ResourceState<ProductDetailsModel>> =
         MutableStateFlow(ResourceState.Loading)
-    val product: StateFlow<ResourceState<ProductDetails>> = _product
+    val product: StateFlow<ResourceState<ProductDetailsModel>> = _product
 
     private val _selectedImageItemIndex = MutableStateFlow(0)
     val selectedImageItemIndex: StateFlow<Int> get() = _selectedImageItemIndex

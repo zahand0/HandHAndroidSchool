@@ -93,6 +93,13 @@
         app:layout_constraintVertical_bias="0"
         tools:text="Cancel date" />
 
+    <View
+        android:id="@+id/menu_anchor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/button_more"
+        app:layout_constraintEnd_toEndOf="@id/button_more" />
+
     <com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressImageButton
         android:id="@+id/button_more"
         android:layout_width="wrap_content"
