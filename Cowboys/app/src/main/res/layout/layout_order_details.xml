@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingHorizontal="@dimen/normal_100">
+
+    <include
+        android:id="@+id/order_product"
+        layout="@layout/layout_order_product"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_house"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/house_hint"
+        android:paddingVertical="@dimen/normal_200"
+        app:endIconDrawable="@drawable/ic_chevron_right"
+        app:endIconMode="custom"
+
+        app:layout_constraintTop_toBottomOf="@id/order_product">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_house"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusable="false"
+            tools:text="S" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_apartment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/apartment_hint"
+        android:paddingBottom="@dimen/normal_200"
+        app:layout_constraintTop_toBottomOf="@id/layout_house">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_apartment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="S" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_delivery_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/delivery_date_hint"
+        app:endIconDrawable="@drawable/ic_chevron_right"
+        app:endIconMode="custom"
+
+        app:layout_constraintTop_toBottomOf="@id/layout_apartment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_delivery_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusable="false"
+            tools:text="S" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
