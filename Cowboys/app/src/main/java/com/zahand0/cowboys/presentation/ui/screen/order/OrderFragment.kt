@@ -20,6 +20,8 @@ import com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressContainer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.time.format.DateTimeFormatter
+
 
 @AndroidEntryPoint
 class OrderFragment : Fragment() {
@@ -47,6 +49,24 @@ class OrderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupProgressContainer()
         setupProductListener()
+        setupDeliveryDate()
+    }
+
+    private fun setupDeliveryDate() {
+        binding.layoutOrderDetails.textDeliveryDate.setOnClickListener {
+            showDatePickerDialog()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val newFragment = DatePickerFragment { date ->
+
+
+            val formatter = DateTimeFormatter.ofPattern("dd MMMM")
+            val text = date.format(formatter)
+            binding.layoutOrderDetails.textDeliveryDate.setText(text)
+        }
+        newFragment.show(childFragmentManager, "datePicker")
     }
 
     private fun setupProductListener() {
