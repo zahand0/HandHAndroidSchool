@@ -4,8 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -50,6 +55,29 @@ class OrderFragment : Fragment() {
         setupProgressContainer()
         setupProductListener()
         setupDeliveryDate()
+        setupTopBar()
+        setupBarsInsets()
+//        setupLocationPicker()
+    }
+
+    private fun setupBarsInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.layoutOrderDetails.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                rightMargin = insets.right
+                bottomMargin = insets.bottom
+            }
+            WindowInsetsCompat.CONSUMED
+        }
+    }
+
+    private fun setupLocationPicker() {
+        binding.layoutOrderDetails.textHouse.setOnClickListener {
+            parentFragmentManager.commit {
+                replace<LocationPickerFragment>(R.id.container)
+                addToBackStack(null)
+            }
+        }
     }
 
     private fun setupDeliveryDate() {
@@ -60,8 +88,6 @@ class OrderFragment : Fragment() {
 
     private fun showDatePickerDialog() {
         val newFragment = DatePickerFragment { date ->
-
-
             val formatter = DateTimeFormatter.ofPattern("dd MMMM")
             val text = date.format(formatter)
             binding.layoutOrderDetails.textDeliveryDate.setText(text)
@@ -99,21 +125,33 @@ class OrderFragment : Fragment() {
     }
 
     private fun setupProduct(productDetails: ProductDetailsModel) {
-        binding.buttonBuy.isVisible = true
-        binding.buttonBuy.setText(
+        binding.layoutOrderDetails.buttonBuy.isVisible = true
+        binding.layoutOrderDetails.buttonBuy.setText(
             getString(
                 R.string.order_buy_action,
                 CurrencyUtil.currencyFormat.format(productDetails.price)
             )
         )
         with(binding.layoutOrderDetails.orderProduct) {
+
             imageProduct.load(productDetails.images[0]) {
                 val corners =
                     binding.root.context.resources.getDimension(R.dimen.product_item_image_corner_size)
                 transformations(RoundedCornersTransformation(corners))
             }
-            textProductTitle.text = productDetails.title
+            val productTitle = getString(
+                R.string.order_product_title,
+                requireArguments().getString(ARG_PRODUCT_SIZE),
+                productDetails.title
+            )
+            textProductTitle.text = productTitle
             textProductCategory.text = productDetails.department
+        }
+    }
+
+    private fun setupTopBar() {
+        binding.topAppBar.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
         }
     }
 

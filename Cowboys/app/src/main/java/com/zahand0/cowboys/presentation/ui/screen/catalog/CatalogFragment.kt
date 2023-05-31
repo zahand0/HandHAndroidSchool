@@ -38,7 +38,7 @@ class CatalogFragment : Fragment() {
 
     private val viewModel: CatalogViewModel by viewModels()
     private val productsAdapter = ProductsAdapter(
-        onBuyClick = {},
+        onBuyClick = ::onProductClick,
         onClick = ::onProductClick
     )
 

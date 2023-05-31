@@ -57,6 +57,7 @@
     <string name="apartment_hint">Квартира</string>
     <string name="delivery_date_hint">Дата доставки</string>
     <string name="order_buy_action">Купить за %s</string>
+    <string name="order_product_title">%s • %s</string>
 
 
 </resources>

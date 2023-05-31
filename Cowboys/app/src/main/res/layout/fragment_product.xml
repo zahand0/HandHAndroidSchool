@@ -23,7 +23,7 @@
             app:navigationIcon="@drawable/ic_up"
             app:titleCentered="true"
             app:titleTextColor="?attr/colorPrimary"
-            tools:title="Profile" />
+            tools:title="Product" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

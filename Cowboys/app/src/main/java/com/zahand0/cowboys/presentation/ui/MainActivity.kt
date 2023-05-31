@@ -3,9 +3,10 @@ package com.zahand0.cowboys.presentation.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.zahand0.cowboys.R
-import com.zahand0.cowboys.presentation.ui.screen.order.OrderFragment
+import com.zahand0.cowboys.presentation.ui.screen.signin.SignInFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,17 +18,18 @@ class MainActivity : AppCompatActivity() {
         fitContentViewToInsets()
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
-//                add<SignInFragment>(R.id.container)
+                add<SignInFragment>(R.id.container)
 //                add<OrdersFragment>(R.id.container)
 //                add<CatalogFragment>(R.id.container)
 //                add(R.id.container, ProductFragment.newInstance(StubData.products[0].id))
-                add(
-                    R.id.container, OrderFragment.newInstance(
-                        productId = "061f02a0-8d12-4828-ab33-6b319a367e66",
-                        productSize = "M"
-                    )
-                )
+//                add(
+//                    R.id.container, OrderFragment.newInstance(
+//                        productId = "061f02a0-8d12-4828-ab33-6b319a367e66",
+//                        productSize = "M"
+//                    )
+//                )
             }
+
         }
     }
 

@@ -67,4 +67,15 @@
             tools:text="S" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.zahand0.cowboys.presentation.ui.util.custom_view.ProgressButton
+        android:id="@+id/button_buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="@dimen/normal_100"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_delivery_date"
+        app:layout_constraintVertical_bias="1"
+        tools:text="Купить за 9000" />
 </androidx.constraintlayout.widget.ConstraintLayout>

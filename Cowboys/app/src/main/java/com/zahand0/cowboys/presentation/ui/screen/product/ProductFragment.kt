@@ -12,6 +12,7 @@ import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +21,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.zahand0.cowboys.R
 import com.zahand0.cowboys.databinding.FragmentProductBinding
 import com.zahand0.cowboys.domain.model.ProductDetailsModel
+import com.zahand0.cowboys.presentation.ui.screen.order.OrderFragment
 import com.zahand0.cowboys.presentation.ui.screen.product.adapter.ProductDetailsAdapter
 import com.zahand0.cowboys.presentation.ui.screen.product.adapter.ProductImageCollectionAdapter
 import com.zahand0.cowboys.presentation.ui.screen.product.adapter.ProductPreviewImageCollectionAdapter
@@ -201,6 +203,12 @@ class ProductFragment : Fragment() {
             }
             .launchIn(lifecycleScope)
         binding.buttonBuy.isVisible = true
+        binding.buttonBuy.setOnClickListener {
+            navigateToOrder(
+                productDetails.id,
+                productDetails.sizes[viewModel.selectedSize.value].value
+            )
+        }
         with(binding.layoutProductDetails) {
             textProductDescription.text = productDetails.description
             textProductTitle.text = productDetails.title
@@ -211,6 +219,21 @@ class ProductFragment : Fragment() {
             textProductSize.setOnClickListener {
                 productSizeBottomSheetFragment?.show(childFragmentManager, null)
             }
+        }
+    }
+
+    private fun navigateToOrder(
+        productId: String,
+        productSize: String
+    ) {
+        parentFragmentManager.commit {
+            replace(
+                R.id.container, OrderFragment.newInstance(
+                    productId = "061f02a0-8d12-4828-ab33-6b319a367e66",
+                    productSize = "M"
+                )
+            )
+            addToBackStack(null)
         }
     }
 

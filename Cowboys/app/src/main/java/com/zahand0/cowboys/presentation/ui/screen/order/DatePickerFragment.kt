@@ -24,7 +24,7 @@ class DatePickerFragment(
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-        val date = LocalDate.of(year, month, day)
+        val date = LocalDate.of(year, month + 1, day)
         onPick(date)
     }
 }
